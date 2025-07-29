@@ -1,19 +1,30 @@
-# Web Scraper PHP Goutte
+# PHP Web Scraper with Goutte
 
-Simple example of web scrapping using <a href="https://github.com/FriendsOfPHP/Goutte" target="_blank">Goutte</a>.
+A basic web scraping example using [Goutte](https://github.com/FriendsOfPHP/Goutte).  
+Scrapes product data from [Automation Exercise](https://www.automationexercise.com/).
 
-<a href="http://automationpractice.com/index.php" target="_blank">My Store</a> is used to demonstrate data scraping.
+### Example
 
-### From this
-
-![](screenshots/webpage.JPG)
-
-### To this
-
-![](screenshots/api.JPG)
-
-
+<table>
+  <tr>
+    <td><b>Source Page</b></td>
+    <td><b>Scraped Output</b></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/webpage.png" width="100%"></td>
+    <td><img src="screenshots/api.png" width="100%"></td>
+  </tr>
+</table>
 
 ### Setup
 
-- Run `composer install`
+1. Clone the repo
+2. Run `composer install`
+3. Start a PHP/web server in the project root
+4. Visit `index.php` in your browser
+
+<hr/>
+
+This is a simple example of data scraping. I enjoy exploring web scraping and often experiment with different stacks,
+including PHP.  
+Feel free to connect if you have any questions, need help, or want to discuss anything related to scraping.

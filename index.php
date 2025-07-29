@@ -1,29 +1,23 @@
 <?php
 
-require 'vendor/autoload.php';
+use Symfony\Component\BrowserKit\HttpBrowser;
 
-use Goutte\Client;
+require 'vendor/autoload.php';
 
 header('Content-Type: application/json');
 
-$url = "http://automationpractice.com/index.php";
-$client = new Client();
+$url = "https://www.automationexercise.com/";
+$client = new HttpBrowser();
 $crawler = $client->request('GET', $url);
 
-$products = array();
-$crawler->filter('ul[id="homefeatured"] > li')
+$products = $crawler->filter("div.features_items>div.col-sm-4")
     ->each(function ($node) {
-        global $products;
-        $item = $node->filter('li > div')->first();
-        $link = $item->filter('div[class="left-block"] > div > a')->attr("href");
-        $img = $item->filter('div[class="left-block"] > div > a > img')->first()->attr("src");
-        $title = $item->filter('div[class="right-block"] > h5')->first()->text();
-        $price = $item->filter('div[class="right-block"] > div >span')->first()->text();
-        $products[] = array(
-            "link" => $link,
-            "image" => $img,
-            "title" => trim(preg_replace('/\t/', '', $title)),
-            "price" => trim(preg_replace('/\t/', '', $price))
+        return array(
+            "id" => (int)$node->filter("div.productinfo>a")->attr("data-product-id"),
+            "name" => $node->filter("div.productinfo>p")->text(),
+            "image" => "https://www.automationexercise.com{$node->filter("div.productinfo>img")->attr("src")}",
+            "price" => (int)str_replace("Rs. ", "", $node->filter("div.productinfo>h2")->text()),
+            "link" => "https://www.automationexercise.com{$node->filter('li > a')->attr('href')}",
         );
     });
 print_r(json_encode($products));

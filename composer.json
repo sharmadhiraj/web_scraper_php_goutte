@@ -1,6 +1,6 @@
 {
   "require": {
-    "fabpot/goutte": "^3.2",
+    "fabpot/goutte": "^4.0.3",
     "ext-json": "*"
   }
 }
